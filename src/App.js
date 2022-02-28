@@ -53,11 +53,6 @@ function App() {
             cmd = cmd.slice(0, cmd.length - 1);
           }
 
-        } else if (domEvent.keyCode === 86) {
-          navigator.clipboard.readText()
-            .then((text) => {
-              curTerm.write(text);
-            })
         } else if (printable) {
           cmd += key;
           curTerm.write(key);
