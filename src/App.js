@@ -1,23 +1,102 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef, useEffect, useState } from 'react';
+import { Terminal } from 'xterm';
+import 'xterm/css/xterm.css';
+import { handleInput } from './api/ledisAPI.js';
 
 function App() {
+  const ref = useRef();
+  const [term, setTerm] = useState();
+
+  useEffect(() => {
+    let curTerm = term;
+    if (!curTerm) {
+      curTerm = new Terminal();
+      setTerm(curTerm);
+      curTerm.open(ref.current);
+      curTerm.writeln('Welcome to Ledis');
+      curTerm.writeln('This is a simple database, with commands similar to Redis (hence the name!).');
+      let shellprompt = '$ ';
+      curTerm.writeln('');
+      curTerm.prompt = function () {
+        curTerm.write('\r\n' + shellprompt);
+      };
+
+      curTerm.prompt();
+
+      let cmd = '';
+
+      curTerm.onKey(({ key, domEvent }) => {
+        var printable = (
+          !domEvent.altKey &&
+          !domEvent.altGraphKey &&
+          !domEvent.ctrlKey &&
+          !domEvent.metaKey
+        );
+
+        if (domEvent.keyCode === 13) {
+          if (cmd === 'clear') {
+            curTerm.clear();
+          }
+          // TODO: cmd = "the whole string".
+          try {
+            curTerm.write('\r\n>>> ' + handleInput(cmd));
+          } catch (err) {
+            curTerm.write('\r\n>>> ' + err);
+          }
+          console.log('qwe clicked 1')
+          cmd = '';
+          curTerm.prompt();
+        } else if (domEvent.keyCode === 8) {
+
+          if (cmd.length > 0) {
+            curTerm.write('\b \b');
+            cmd = cmd.slice(0, cmd.length - 1);
+          }
+
+        } else if (domEvent.keyCode === 86) {
+          navigator.clipboard.readText()
+            .then((text) => {
+              curTerm.write(text);
+            })
+        } else if (printable) {
+          cmd += key;
+          curTerm.write(key);
+        }
+      });
+    }
+
+
+
+
+    // term.on('key', function (key, ev) {
+    //   var printable = (
+    //     !ev.altKey && !ev.altGraphKey && !ev.ctrlKey && !ev.metaKey
+    //   );
+
+    //   if (ev.keyCode == 13) {
+    //     if (cmd === 'clear') {
+    //       term.clear();
+    //     }
+    //     cmd = '';
+    //     term.prompt();
+    //   } else if (ev.keyCode == 8) {
+    //     // Do not delete the prompt
+    //     console.log(term.rows);
+    //     if (term.x > 2) {
+    //       term.write('\b \b');
+    //     }
+    //   } else if (printable) {
+    //     cmd += key;
+    //     term.write(key);
+    //   }
+    // });
+
+  }); // after div is here
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div id="terminal" ref={ref}></div>
     </div>
   );
 }
