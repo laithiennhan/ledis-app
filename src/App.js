@@ -43,7 +43,6 @@ function App() {
           } catch (err) {
             curTerm.write('\r\n>>> ' + err);
           }
-          console.log('qwe clicked 1')
           cmd = '';
           curTerm.prompt();
         } else if (domEvent.keyCode === 8) {
