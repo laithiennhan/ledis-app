@@ -1,0 +1,18 @@
+db: object to represent the database.
+
+handleInput(cmd: String): takes user input from terminal and handles commands. Throw errors if inputs are invalid.
+
+setKeyValues(key: String, val: String): function to handle SET commands. Creates a new object of type key in the data.
+
+getKeyValue(key: String): function to handle GET commmands. Returns the value stored at [key]. If [key] does not exist, throws an error.
+
+sAdd(key: String, val: String[]): function to handle SADD commands. Add all values in [val] to [key].
+
+sRem(key: String, val: String[]): function to handle SREM commands. If key does not exists, throws an error. Otherwise, remove values indicated in [val] from [key].
+
+sInter(keyList: String[]): function to handle SINTER commands. Returns the intersection of keys in [keyList]. If any key does not exist, throws a new error. 
+
+keys(): function to handle KEYS commands. Returns all the current active keys in the database.
+
+expire(key: String, expire: number): function to handle EXPIRE commands. Set key to expire in [expire] seconds. Throws error if key does not exist or if expire is not a positive integer.
+
