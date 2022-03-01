@@ -1,1 +1,0 @@
-handleInput(cmd): take user input from terminal and handle commands. Throw errors if inputs are invalid.

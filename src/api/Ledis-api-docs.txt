@@ -1,0 +1,3 @@
+db: object to represent the database.
+handleInput(cmd): take user input from terminal and handle commands. Throw errors if inputs are invalid.
+setKeyValues(key, val): function to handle SET commands. Create a new object of type key in the data
