@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ledis-app/static/css/main.91227688.css",
-    "main.js": "/ledis-app/static/js/main.dac9cf27.js",
+    "main.js": "/ledis-app/static/js/main.36f9e11d.js",
     "index.html": "/ledis-app/index.html",
     "main.91227688.css.map": "/ledis-app/static/css/main.91227688.css.map",
-    "main.dac9cf27.js.map": "/ledis-app/static/js/main.dac9cf27.js.map"
+    "main.36f9e11d.js.map": "/ledis-app/static/js/main.36f9e11d.js.map"
   },
   "entrypoints": [
     "static/css/main.91227688.css",
-    "static/js/main.dac9cf27.js"
+    "static/js/main.36f9e11d.js"
   ]
 }
