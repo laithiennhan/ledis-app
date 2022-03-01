@@ -103,11 +103,15 @@ function getKeyValue(key) {
 
 //Functions on Sets
 function sAdd(key, val) {
-    
+    if (checkIfExpired(key) === -1){
+        db[key] = {value: []};
+    }    
     if (!Array.isArray(db[key].value)) {
-        db[key] = { value: [value] };
+        throw new Error('This key stored a string, cannot SADD to string');
     }
-    db[key].value.push(...val);
+    for (let i = 0; i < val.length; ++i){
+        db[key].value.push(val[i]);
+    }
 }
 
 function sRem(key, val) {
