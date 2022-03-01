@@ -101,7 +101,7 @@ function getKeyValue(key) {
     checkIfExpired(key);
 
     if (db[key] === undefined) {
-        throw new Error('ERROR: Key Not Found');
+        throw new Error('Key Not Found');
     }
     return db[key].value;
 }
@@ -145,7 +145,7 @@ function sInter(keyList) {
     for (let i = 0; i < keyList.length; i++) {
         checkIfExpired(keyList[i]);
         if (db[keyList[i]] === undefined) {
-            throw new Error('ERROR: Key ' + keyList[i] + ' not found')
+            throw new Error('Key ' + keyList[i] + ' not found')
         }
         if (!Array.isArray(db[keyList[i]].value)){
             throw new Error(db[keyList[i]] + ' is not a set. Cannot call SINTER on non-set items');
@@ -186,7 +186,7 @@ function keys() {
 function del(key) {
     checkIfExpired(key);
     if (db[key] === undefined) {
-        throw new Error('ERROR: Key Not Found');
+        throw new Error('Key Not Found');
     }
 
     delete db[key];
@@ -195,7 +195,7 @@ function del(key) {
 function expire(key, expire) {
     checkIfExpired(key);
     if (db[key] === undefined) {
-        throw new Error('ERROR: Key Not Found');
+        throw new Error('Key Not Found');
     }
     checkIfExpired(key);
 
@@ -210,7 +210,7 @@ function ttl(key) {
 function checkIfExpired(key) {
 
     if (db[key] === undefined) {
-        throw new Error('ERROR: Key Not Found');
+        throw new Error('Key Not Found');
     }
     if (db[key].expire === undefined) {
         return -2;
