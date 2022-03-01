@@ -16,6 +16,7 @@ function App() {
       curTerm.writeln('Welcome to Ledis');
       curTerm.writeln('This is a simple database, with commands similar to Redis (hence the name!).');
       curTerm.writeln('Built by: Nhan (Marco) Lai');
+      curTerm.writeln('Souce code for this project: https://github.com/laithiennhan/ledis-app');
       let shellprompt = '$ ';
       curTerm.writeln('');
       curTerm.prompt = function () {
