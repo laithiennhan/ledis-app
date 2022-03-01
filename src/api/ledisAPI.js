@@ -103,8 +103,9 @@ function getKeyValue(key) {
 
 //Functions on Sets
 function sAdd(key, val) {
-    if (!Array.isArray(db[key])) {
-        db[key] = { value: [] };
+    
+    if (!Array.isArray(db[key].value)) {
+        db[key] = { value: [value] };
     }
     db[key].value.push(...val);
 }
