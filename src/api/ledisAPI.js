@@ -108,6 +108,9 @@ function getKeyValue(key) {
 
 //Functions on Sets
 function sAdd(key, val) {
+    if (db[key] === undefined){
+        db[key] = {value: []};
+    }
     if (checkIfExpired(key) === -1){
         db[key] = {value: []};
     }    
