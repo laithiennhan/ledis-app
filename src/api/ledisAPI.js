@@ -125,7 +125,7 @@ function sAdd(key, val) {
 function sRem(key, val) {
     checkIfExpired(key);
     if (db[key] === undefined) {
-        throw new Error('ERROR: Key Not Found');
+        throw new Error('Key Not Found');
     }
     if (!Array.isArray(db[key].value)){
         throw new Error(db[key] + ' is not a set. Cannot call SREM on non-set items');
