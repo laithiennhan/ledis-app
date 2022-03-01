@@ -14,5 +14,16 @@ sInter(keyList: String[]): function to handle SINTER commands. Returns the inter
 
 keys(): function to handle KEYS commands. Returns all the current active keys in the database.
 
+del(key: String): function to handle DEL commands. Delete [key]. If [key] does not exist, throws a new error.
+
 expire(key: String, expire: number): function to handle EXPIRE commands. Set key to expire in [expire] seconds. Throws error if key does not exist or if expire is not a positive integer.
+
+ttl(key: String): function to handle TTL commands. Returns time remaining of key. Throws a new error if key does not exist. 
+
+checkIfExpired(key): function to handle key expiration. Throws a new error if [key] does not exist. If key expiration is not set, return -2. If key expired, delete the key and return -1. Otherwise returns the time remaining of the key. 
+
+save(): save the current state of the database into a JSON string. 
+
+restore(): restore the database to the latest snapshot.
+
 
