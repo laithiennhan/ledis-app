@@ -13,10 +13,10 @@ function App() {
       curTerm = new Terminal();
       setTerm(curTerm);
       curTerm.open(ref.current);
-      curTerm.writeln('Welcome to Ledis');
-      curTerm.writeln('This is a simple database, with commands similar to Redis (hence the name!).');
-      curTerm.writeln('Built by: Nhan (Marco) Lai');
-      curTerm.writeln('Souce code for this project: https://github.com/laithiennhan/ledis-app');
+      curTerm.writeln('**Welcome to LEDIS**');
+      curTerm.writeln('# This is a simple database, with commands similar to Redis (hence the name!).');
+      curTerm.writeln('# Built by: Nhan (Marco) Lai');
+      curTerm.writeln('# Souce code for this project: https://github.com/laithiennhan/ledis-app');
       let shellprompt = '$ ';
       curTerm.writeln('');
       curTerm.prompt = function () {
