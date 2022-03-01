@@ -6,7 +6,6 @@ function handleInput(cmd) {
     let input = cmd.split(' ');
     let command = input[0];
     let valueList = [];
-    console.log('qwe clicked 0')
     switch (command) {
         case 'SET':
             if (input.length !== 3) {
@@ -63,6 +62,12 @@ function handleInput(cmd) {
         case 'TTL':
             if (input.length != 2) {
                 throw new Error('TTL should have 1 argument');
+            }
+            if (ttl(input[1]) === -1){
+                return "Key expired";
+            }
+            if (ttl(input[1]) === 2){
+                return "Key does not have expiration";
             }
             return ttl(input[1]);
 
@@ -196,7 +201,7 @@ function expire(key, expire) {
 }
 
 function ttl(key) {
-    return checkIfExpired(key);
+    return checkIfExpired(key)/1000;
 
 }
 function checkIfExpired(key) {
